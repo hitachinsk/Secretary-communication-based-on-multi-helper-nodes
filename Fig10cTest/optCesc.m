@@ -1,4 +1,4 @@
-    function [PxRes, PyRes, PzRes, kxres, Pnres, Peres] = optCesc(NumofNodes)
+function [PxRes, PyRes, PzRes, kxres, Pnres, Peres] = optCesc(NumofNodes)
 alpha_AB = sqrt(1/2)*(randn(1,1000) +1i*randn(1,1000));
 alpha_AE = sqrt(1/2)*(randn(1,1000) +1i*randn(1,1000));
 alpha_BE = sqrt(1/2)*(randn(1,1000) +1i*randn(1,1000));
@@ -29,12 +29,12 @@ for j = 1:1000
     sigma_nb2 = sigma_nb2 * kexi * Pn1 + Pe1;
     yita = abs(Hxy(2, 1))^2 * Px1 + abs(Hxy(2, 2))^2 * Py1 + yita_iter * kexi * Pn1 + Pe1;
     K = [abs(Hxy(1, 1))^2 * Px1 + abs(Hxy(1, 2))^2 * Py1 + Pe1, 0; 0, yita];
-    %保密信道
+    %卤拢脙脺脨脜碌脌
     Csec(j) = log(1 + abs(alpha_AB(j))^2 * Pz1/sigma_nb2) - log(det(hz * hz' * Pz1 + K) / det(K));
 end
 meanCsec = mean(Csec);
 P0 = 50;
-%优化函数f2 and capacity
+%脫脜禄炉潞炉脢媒f2 and capacity
 f2 = (1 + 2 * NumofNodes * kexi) * Px1 + (1 + NumofNodes * kexi) * Py1 + Pz1 + NumofNodes * kexi * Pn1;
 P0Test = 10^(P0 / 10);
 PeTest = P0Test / 100;
